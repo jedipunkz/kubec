@@ -2,6 +2,7 @@ package commands
 
 import (
 	"fmt"
+	mykube "kubec/pkg/kubec"
 	"strings"
 
 	"github.com/mitchellh/cli"
@@ -34,9 +35,10 @@ func (c *ListDeployments) Synopsis() string {
 
 // Run function for listing deployments
 func (c *ListDeployments) Run(args []string) int {
-	config := loadConfig()
+	k := mykube.NewKubeClient()
+	// config := mykube.loadConfig()
 
-	clientset, err := kubernetes.NewForConfig(config)
+	clientset, err := kubernetes.NewForConfig(k.Config)
 
 	deploymentsClient := clientset.AppsV1().Deployments(namespace)
 	list, err := deploymentsClient.List(v1.ListOptions{})

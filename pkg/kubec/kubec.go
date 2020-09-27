@@ -1,4 +1,4 @@
-package commands
+package mykube
 
 import (
 	"flag"
@@ -9,7 +9,15 @@ import (
 	"k8s.io/client-go/util/homedir"
 )
 
-func loadConfig() *rest.Config {
+// KubeClient is struct for Kubernetes Client
+type KubeClient struct {
+	Config *rest.Config
+}
+
+// NewKubeClient is func ...
+func NewKubeClient() *KubeClient {
+	k := new(KubeClient)
+
 	var kubeconfig *string
 	if home := homedir.HomeDir(); home != "" {
 		kubeconfig = flag.String("kubeconfig", filepath.Join(home, ".kube", "config"), "(optional) absolute path to the kubeconfig file")
@@ -18,10 +26,7 @@ func loadConfig() *rest.Config {
 	}
 	flag.Parse()
 
-	config, err := clientcmd.BuildConfigFromFlags("", *kubeconfig)
-	if err != nil {
-		panic(err)
-	}
+	k.Config, _ = clientcmd.BuildConfigFromFlags("", *kubeconfig)
 
-	return config
+	return k
 }
