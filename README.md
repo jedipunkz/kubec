@@ -2,7 +2,7 @@
 
 ## Description
 
-🐳  kubec 🐳  is kubernetes cli for my own and learning go.
+kubec is kubernetes cli for my own and learning go.
 
 ## Sub-Commands
 
