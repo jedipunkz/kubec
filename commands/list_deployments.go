@@ -2,6 +2,7 @@ package commands
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/mitchellh/cli"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -16,6 +17,20 @@ type ListDeployments struct {
 var (
 	namespace string
 )
+
+const helpListDeployments = `
+Usage: kubec list deployments
+`
+
+// Help is func for Help
+func (c *ListDeployments) Help() string {
+	return strings.TrimSpace(helpListDeployments)
+}
+
+// Synopsis is func for Synopsis
+func (c *ListDeployments) Synopsis() string {
+	return "listing deployments"
+}
 
 // Run function for listing deployments
 func (c *ListDeployments) Run(args []string) int {

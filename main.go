@@ -1,4 +1,4 @@
-package kubec
+package main
 
 import (
 	"fmt"
