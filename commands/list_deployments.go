@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/mitchellh/cli"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 )
 
@@ -24,7 +24,7 @@ func (c *ListDeployments) Run(args []string) int {
 	clientset, err := kubernetes.NewForConfig(config)
 
 	deploymentsClient := clientset.AppsV1().Deployments(namespace)
-	list, err := deploymentsClient.List(metav1.ListOptions{})
+	list, err := deploymentsClient.List(v1.ListOptions{})
 	if err != nil {
 		c.UI.Error(err.Error())
 		return 1

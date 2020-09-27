@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/jedipunkz/kubec/commands"
+	commands "kubec/commands"
+
 	"github.com/mitchellh/cli"
 )
 
