@@ -12,6 +12,12 @@ kubec is kubernetes cli for my own and learning go.
 $ kubec list deployments
 ```
 
+### list pods
+
+```bash
+$ kubec list pods
+```
+
 ## License
 
 MIT
