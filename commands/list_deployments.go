@@ -6,18 +6,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/mitchellh/cli"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
-)
-
-// ListDeployments is struct for Listing of Deployments
-type ListDeployments struct {
-	UI cli.Ui
-}
-
-var (
-	namespace string
 )
 
 const helpListDeployments = `
