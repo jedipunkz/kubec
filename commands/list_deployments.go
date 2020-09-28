@@ -3,6 +3,7 @@ package commands
 import (
 	"fmt"
 	mykube "kubec/pkg/kubec"
+	"strconv"
 	"strings"
 
 	"github.com/mitchellh/cli"
@@ -36,7 +37,6 @@ func (c *ListDeployments) Synopsis() string {
 // Run function for listing deployments
 func (c *ListDeployments) Run(args []string) int {
 	k := mykube.NewKubeClient()
-	// config := mykube.loadConfig()
 
 	clientset, err := kubernetes.NewForConfig(k.Config)
 
@@ -49,7 +49,7 @@ func (c *ListDeployments) Run(args []string) int {
 
 	fmt.Printf("Thare are %d deployment(s) in the cluster\n", len(list.Items))
 	for _, d := range list.Items {
-		fmt.Printf(" * %s (%d replicas\n", d.Name, *d.Spec.Replicas)
+		c.UI.Output(" * " + d.Name + " (" + strconv.Itoa(int(*d.Spec.Replicas)) + " replicas)")
 	}
 	return 0
 }
