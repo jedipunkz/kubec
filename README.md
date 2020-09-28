@@ -18,6 +18,12 @@ $ kubec list deployments
 $ kubec list pods
 ```
 
+### list namespaces
+
+```bash
+$ kubec list namespaces
+```
+
 ## License
 
 MIT

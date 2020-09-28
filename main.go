@@ -30,6 +30,9 @@ func main() {
 		"list pods": func() (cli.Command, error) {
 			return &commands.ListPods{UI: &cli.ColoredUi{Ui: ui, WarnColor: cli.UiColorYellow, ErrorColor: cli.UiColorRed}}, nil
 		},
+		"list namespaces": func() (cli.Command, error) {
+			return &commands.ListNamespaces{UI: &cli.ColoredUi{Ui: ui, WarnColor: cli.UiColorYellow, ErrorColor: cli.UiColorRed}}, nil
+		},
 	}
 
 	exitStatus, err := c.Run()
