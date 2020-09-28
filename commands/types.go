@@ -12,6 +12,11 @@ type ListPods struct {
 	UI cli.Ui
 }
 
+// ListNamespaces is struct for Listing of Namespaces
+type ListNamespaces struct {
+	UI cli.Ui
+}
+
 var (
 	namespace string
 )
