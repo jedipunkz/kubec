@@ -27,6 +27,9 @@ func main() {
 		"list deployments": func() (cli.Command, error) {
 			return &commands.ListDeployments{UI: &cli.ColoredUi{Ui: ui, WarnColor: cli.UiColorYellow, ErrorColor: cli.UiColorRed}}, nil
 		},
+		"list pods": func() (cli.Command, error) {
+			return &commands.ListPods{UI: &cli.ColoredUi{Ui: ui, WarnColor: cli.UiColorYellow, ErrorColor: cli.UiColorRed}}, nil
+		},
 	}
 
 	exitStatus, err := c.Run()
