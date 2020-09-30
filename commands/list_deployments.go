@@ -7,13 +7,13 @@ import (
 	"strconv"
 	"strings"
 
-	apiv1 "k8s.io/api/core/v1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 )
 
 const helpListDeployments = `
-Usage: kubec list deployments
+Usage: kubec list deployments                   # list pods on all namespaces
+       kubec list deployoments [-n <namespace>] # list pods on your specified namespace
 `
 
 // Help is func for Help
@@ -32,7 +32,11 @@ func (c *ListDeployments) Run(args []string) int {
 
 	clientset, err := kubernetes.NewForConfig(k.Config)
 
-	deploymentsClient := clientset.AppsV1().Deployments(apiv1.NamespaceDefault)
+	if len(args) == 2 && args[0] == "-n" {
+		namespace = args[1]
+	}
+
+	deploymentsClient := clientset.AppsV1().Deployments(namespace)
 	list, err := deploymentsClient.List(context.TODO(), v1.ListOptions{})
 	if err != nil {
 		c.UI.Error(err.Error())

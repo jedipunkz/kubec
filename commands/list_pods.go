@@ -11,7 +11,8 @@ import (
 )
 
 const helpListPods = `
-Usage: kubec list pods
+Usage: kubec list pods                      # list pods on all namespaces
+       kubec list pods [-n <namespacename] # list pods on your specified namespace
 `
 
 // Help is func for Help
@@ -29,6 +30,10 @@ func (c *ListPods) Run(args []string) int {
 	k := mykube.NewKubeClient()
 
 	clientset, err := kubernetes.NewForConfig(k.Config)
+
+	if len(args) == 2 && args[0] == "-n" {
+		namespace = args[1]
+	}
 
 	pods, err := clientset.CoreV1().Pods(namespace).List(context.TODO(), v1.ListOptions{})
 	if err != nil {

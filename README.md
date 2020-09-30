@@ -9,13 +9,13 @@ kubec is kubernetes cli for my own and learning go.
 ### list deployments
 
 ```bash
-$ kubec list deployments
+$ kubec list deployments [-n <namespace>]
 ```
 
 ### list pods
 
 ```bash
-$ kubec list pods
+$ kubec list pods [-n <namespace>]
 ```
 
 ### list namespaces
