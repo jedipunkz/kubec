@@ -1,6 +1,7 @@
 package commands
 
 import (
+	"context"
 	"fmt"
 	mykube "kubec/pkg/kubec"
 	"strings"
@@ -29,7 +30,7 @@ func (c *ListPods) Run(args []string) int {
 
 	clientset, err := kubernetes.NewForConfig(k.Config)
 
-	pods, err := clientset.CoreV1().Pods(namespace).List(v1.ListOptions{})
+	pods, err := clientset.CoreV1().Pods(namespace).List(context.TODO(), v1.ListOptions{})
 	if err != nil {
 		c.UI.Error(err.Error())
 		return 1

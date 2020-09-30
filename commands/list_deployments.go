@@ -1,11 +1,13 @@
 package commands
 
 import (
+	"context"
 	"fmt"
 	mykube "kubec/pkg/kubec"
 	"strconv"
 	"strings"
 
+	apiv1 "k8s.io/api/core/v1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 )
@@ -30,8 +32,8 @@ func (c *ListDeployments) Run(args []string) int {
 
 	clientset, err := kubernetes.NewForConfig(k.Config)
 
-	deploymentsClient := clientset.AppsV1().Deployments(namespace)
-	list, err := deploymentsClient.List(v1.ListOptions{})
+	deploymentsClient := clientset.AppsV1().Deployments(apiv1.NamespaceDefault)
+	list, err := deploymentsClient.List(context.TODO(), v1.ListOptions{})
 	if err != nil {
 		c.UI.Error(err.Error())
 		return 1
